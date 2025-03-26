@@ -1,0 +1,17 @@
+docker build -t aws-bedrock-rag .
+docker run -p 8000:8000 aws-bedrock-rag
+
+---
+
+### **5️⃣ Dockerfile (For Deployment on AWS Lambda or ECS)**  
+```dockerfile
+FROM python:3.9
+
+WORKDIR /app
+
+COPY requirements.txt requirements.txt
+RUN pip install -r requirements.txt
+
+COPY . .
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
